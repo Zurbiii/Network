@@ -24,8 +24,8 @@ public final class RequestProducer: RequestProducerProtocol {
             .validate(statusCode: 200..<300)
             .responseDecodable(completionHandler: { [weak dataRequest] (response: DataResponse<T, AFError>) in
                 dataRequest.map { debugPrint($0) }
-                let responseData = response.data ?? Data()
-                let string = String(data: responseData, encoding: .utf8)
+//                let responseData = response.data ?? Data()
+//                let string = String(data: responseData, encoding: .utf8)
 //                print("Reponse string: \(string ?? "")")
                 switch response.result {
                 case .success(let response):
