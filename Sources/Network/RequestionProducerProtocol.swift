@@ -11,5 +11,7 @@ public protocol RequestProducerProtocol {
 
     static func request<T: Decodable>(_ apiRoute: APIRouteable,
                                       completion: @escaping (Result<T, Error>) -> Void)
+    
+    static func request<T: Decodable>(_ apiRoute: APIRouteable) async throws -> Result<T, Error>
 
 }

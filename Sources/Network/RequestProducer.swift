@@ -10,8 +10,24 @@ import Alamofire
 
 public final class RequestProducer: RequestProducerProtocol {
     
+    public static func request<T: Decodable>(_ apiRoute: APIRouteable) async throws -> Result<T, Error> {
+        let dataRequest = AF.request(apiRoute)
+        return try withCheckedThrowingContinuation { continuation in
+            dataRequest
+                .responseDecodable(completionHandler: { [weak dataRequest] (response: DataResponse<T, AFError>) in
+                    dataRequest.map { debugPrint($0) }
+                    switch response.result {
+                    case .success(let response):
+                        continuation.resume(returning: .success(response))
+                    case .failure(let error):
+                        continuation.resume(throwing: .failure(error))
+                    }
+                })
+        }
+    }
+    
     public static func request<T: Decodable>(_ apiRoute: APIRouteable,
-                                      completion: @escaping (Result<T, Error>) -> Void) {
+                                             completion: @escaping (Result<T, Error>) -> Void) {
         let dataRequest = AF.request(apiRoute)
         dataRequest
             .validate(statusCode: 200..<300)
@@ -19,7 +35,7 @@ public final class RequestProducer: RequestProducerProtocol {
                 dataRequest.map { debugPrint($0) }
 //                let responseData = response.data ?? Data()
 //                let string = String(data: responseData, encoding: .utf8)
-//                print("Reponse string: \(string ?? "")")
+//                print("Response string: \(string ?? "")")
                 switch response.result {
                 case .success(let response):
                     completion(.success(response))
