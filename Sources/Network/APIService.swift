@@ -1,5 +1,5 @@
 //
-//  RequestProducer.swift
+//  APIService.swift
 //  
 //
 //  Created by Guillaume ZURBACH on 09/03/2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-public final class RequestProducer: RequestProducerProtocol {
+public final class APIService: APIServiceProtocol {
     
     @available(iOS 13.0, *)
     public static func request<T: Decodable>(_ apiRoute: APIRouteable) async throws -> Result<T, Error> {
