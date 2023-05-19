@@ -20,7 +20,7 @@ public final class RequestProducer: RequestProducerProtocol {
                     dataRequest.map { debugPrint($0) }
                     switch response.result {
                     case .success(let response):
-                        continuation.resume(returning: response)
+                        continuation.resume(returning: .success(response))
                     case .failure(let error):
                         continuation.resume(throwing: error)
                     }
