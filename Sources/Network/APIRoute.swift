@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import Network
 
-struct APIRoute: APIRouteable {
+public struct APIRoute: APIRouteable {
 
     var baseURL: String
     var path: String
