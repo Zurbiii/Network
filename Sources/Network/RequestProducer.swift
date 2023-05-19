@@ -10,6 +10,7 @@ import Alamofire
 
 public final class RequestProducer: RequestProducerProtocol {
     
+    @available(iOS 13.0, *)
     public static func request<T: Decodable>(_ apiRoute: APIRouteable) async throws -> Result<T, Error> {
         let dataRequest = AF.request(apiRoute)
         return try withCheckedThrowingContinuation { continuation in
