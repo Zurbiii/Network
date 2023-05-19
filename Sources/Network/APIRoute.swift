@@ -11,10 +11,10 @@ import Network
 
 public struct APIRoute: APIRouteable {
 
-    var baseURL: String
-    var path: String
-    var method: HTTPMethod
-    var parameters: Parameters?
-    var encoding: ParameterEncoding
+    public var baseURL: String
+    public var path: String
+    public var method: HTTPMethod
+    public var parameters: Parameters?
+    public var encoding: ParameterEncoding
 
 }
