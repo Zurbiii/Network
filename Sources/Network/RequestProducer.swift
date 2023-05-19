@@ -20,7 +20,7 @@ public final class RequestProducer: RequestProducerProtocol {
                     case .success(let response):
                         continuation.resume(returning: .success(response))
                     case .failure(let error):
-                        continuation.resume(throwing: .failure(error))
+                        continuation.resume(throwing: error)
                     }
                 })
         }
