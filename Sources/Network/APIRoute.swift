@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import Network
 
 public struct APIRoute: APIRouteable {
 
